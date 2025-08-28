@@ -1,9 +1,17 @@
+import { RouterProvider } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import router from '@/router/Router';
+import '@styles/global.css.ts';
+import { queryClient } from '@api/queryClient';
+
 function App() {
-    return <div>
-        <h1>CI-CD</h1>
-        <h2>파이프라인</h2>
-        <h3>테스트</h3>
-    </div>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
